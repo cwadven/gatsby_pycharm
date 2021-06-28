@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
+import Img, { FluidObject } from 'gatsby-image';
 
-// 자신이 원하는 프로필 이미지 링크로 설정해주세요.
-const PROFILE_IMAGE_LINK =
-    'https://cwadven.github.io/assets/images/profile_image.jpg';
+export interface ProfileImageProps {
+    profileImage: FluidObject;
+}
 
-const ProfileImageWrapper = styled.img`
+const ProfileImageWrapper = styled(Img)`
     width: 120px;
     height: 120px;
     margin-bottom: 30px;
@@ -17,8 +18,10 @@ const ProfileImageWrapper = styled.img`
     }
 `;
 
-const ProfileImage: FunctionComponent = function () {
-    return <ProfileImageWrapper src={PROFILE_IMAGE_LINK} alt="Profile Image" />;
+const ProfileImage: FunctionComponent<ProfileImageProps> = props => {
+    return (
+        <ProfileImageWrapper fluid={props.profileImage} alt="profile-image" />
+    );
 };
 
 export default ProfileImage;

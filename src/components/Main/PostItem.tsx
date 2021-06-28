@@ -1,13 +1,18 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import Img, { FluidObject } from 'gatsby-image';
 
 interface PostItemProps {
     title: string;
     date: string;
     categories: string[];
     summary: string;
-    thumbnail: string;
+    thumbnail: {
+        childImageSharp: {
+            fluid: FluidObject;
+        };
+    };
     link: string;
 }
 
@@ -24,11 +29,10 @@ const PostItemWrapper = styled(Link)`
     }
 `;
 
-const ThumbnailImage = styled.img`
+const ThumbnailImage = styled(Img)`
     width: 100%;
     height: 200px;
     border-radius: 10px 10px 0 0;
-    object-fit: cover;
 `;
 
 const PostItemContent = styled.div`
@@ -90,7 +94,10 @@ const Summary = styled.div`
 const PostItem: FunctionComponent<PostItemProps> = props => {
     return (
         <PostItemWrapper to={'/'}>
-            <ThumbnailImage src={props.thumbnail} alt="Post Item Image" />
+            <ThumbnailImage
+                fluid={props.thumbnail.childImageSharp.fluid}
+                alt="Post Item Image"
+            />
 
             <PostItemContent>
                 <Title>{props.title}</Title>
