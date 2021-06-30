@@ -1,15 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
-
-import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Global, css } from '@emotion/react';
 
 const globalStyle = css`
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-
         font-size: 20px;
     }
 `;
@@ -26,7 +24,7 @@ const Text1 = styled.div<{ disable: boolean }>`
     text-decoration: ${({ disable }) => (disable ? 'line-through' : 'none')};
 `;
 
-const Text2 = styled('div')<{ disable: boolean }>(({ disable }) => ({
+const Text2 = styled('div')<{ disable: boolean }>(disable => ({
     fontSize: '15px',
     color: 'blue',
     textDecoration: disable ? 'line-through' : 'none',

@@ -23,16 +23,9 @@ const PostItemWrapper = styled(Link)`
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
     transition: 0.3s box-shadow;
     cursor: pointer;
-
     &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
-`;
-
-const ThumbnailImage = styled(Img)`
-    width: 100%;
-    height: 200px;
-    border-radius: 10px 10px 0 0;
 `;
 
 const PostItemContent = styled.div`
@@ -40,6 +33,12 @@ const PostItemContent = styled.div`
     display: flex;
     flex-direction: column;
     padding: 15px;
+`;
+
+const ThumbnailImage = styled(Img)`
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
 `;
 
 const Title = styled.div`
@@ -91,23 +90,28 @@ const Summary = styled.div`
     opacity: 0.8;
 `;
 
-const PostItem: FunctionComponent<PostItemProps> = props => {
+const PostItem: FunctionComponent<PostItemProps> = function ({
+    title,
+    date,
+    categories,
+    summary,
+    thumbnail: {
+        childImageSharp: { fluid },
+    },
+    link,
+}) {
     return (
-        <PostItemWrapper to={'/'}>
-            <ThumbnailImage
-                fluid={props.thumbnail.childImageSharp.fluid}
-                alt="Post Item Image"
-            />
-
+        <PostItemWrapper to={link}>
+            <ThumbnailImage fluid={fluid} alt="Post Item Image" />
             <PostItemContent>
-                <Title>{props.title}</Title>
-                <Date>{props.date}</Date>
+                <Title>{title}</Title>
+                <Date>{date}</Date>
                 <Category>
-                    {props.categories.map(category => (
+                    {categories.map(category => (
                         <CategoryItem key={category}>{category}</CategoryItem>
                     ))}
                 </Category>
-                <Summary>{props.summary}</Summary>
+                <Summary>{summary}</Summary>
             </PostItemContent>
         </PostItemWrapper>
     );
