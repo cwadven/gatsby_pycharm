@@ -15,6 +15,13 @@ module.exports = {
     },
     plugins: [
         {
+            resolve: 'gatsby-plugin-canonical-urls',
+            options: {
+                siteUrl: 'https://my-website.com/',
+                stripQueryString: true,
+            },
+        },
+        {
             resolve: 'gatsby-plugin-typescript',
             options: {
                 isTSX: true,
