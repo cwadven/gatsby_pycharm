@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
     display: grid;
     place-items: center;
     margin-top: auto;
@@ -9,6 +9,7 @@ const FooterWrapper = styled.div`
     font-size: 15px;
     text-align: center;
     line-height: 1.5;
+
     @media (max-width: 768px) {
         font-size: 13px;
     }
